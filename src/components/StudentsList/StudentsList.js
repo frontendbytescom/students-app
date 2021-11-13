@@ -1,4 +1,4 @@
-import studentsListData from './students-list-data.js';
+import studentsListData from '../../data/students-list-data.js';
 import Student from '../Student/Student';
 
 const StudentsList = () => {
