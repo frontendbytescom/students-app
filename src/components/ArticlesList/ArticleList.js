@@ -1,6 +1,6 @@
 import Article from "../Article/Article";
 import React, { useState } from "react";
-import ToggleColorButton from "../ToggleColorButton/ToggleColorButton";
+import Button from "../Button/Button";
 
 const ArticleList = () => {
     const [titleColor, setTitleColor] = useState('black');
@@ -11,7 +11,10 @@ const ArticleList = () => {
 
     return (
         <div className="articles">
-            <ToggleColorButton click={() => changeTitleColor('purple')} />
+            <Button 
+                click={() => changeTitleColor('purple')} 
+                text="Toggle Color"
+            />
 
             <Article
                 title="Article 1"

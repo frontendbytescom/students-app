@@ -2,29 +2,45 @@ import React, { useState } from 'react';
 
 import studentsListData from '../../data/students-list-data.js';
 import Student from '../Student/Student';
-import ToggleColorButton from '../ToggleColorButton/ToggleColorButton.js';
+import Button from '../Button/Button.js';
 
 const StudentsList = () => {
     const [blackText, setBlackText] = useState(false);
+    const [showStudents, setShowStudents] = useState(false);
+    let students = null;
 
     const toggleColor = () => {
         setBlackText(!blackText);
     }
 
+    const handleClickToggleShowStundets = () => {
+        setShowStudents(!showStudents);
+    }
+
+    if (showStudents) {
+        students = studentsListData.map((student) => (
+            <Student 
+                key={student.id}
+                firstName={student.firstName}
+                lastName={student.lastName}
+                course={student.course}
+                email={student.email}
+                color={!blackText ? student.color : 'black'} 
+                toggleColorClick={toggleColor} />
+        ));
+    } 
+
     return (
         <>  
-            <ToggleColorButton click={toggleColor} />
+            <Button 
+                click={toggleColor} 
+                text="Toggle Color"/>
 
-            {studentsListData.map((student) => (
-                <Student 
-                    key={student.id}
-                    firstName={student.firstName}
-                    lastName={student.lastName}
-                    course={student.course}
-                    email={student.email}
-                    color={!blackText ? student.color : 'black'} 
-                    toggleColorClick={toggleColor} />
-            ))}
+            <Button 
+                click={handleClickToggleShowStundets} 
+                text={showStudents ? 'Hide students' : 'Show students'} />
+
+            {students}
         </>
     )
 }

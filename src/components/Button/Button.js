@@ -1,12 +1,12 @@
-const ToggleColorButton = (props) => {
+const Button = (props) => {
     return (
         <button
             onClick={props.click}
             className="toggle-color"
         >
-            Toggle Color
+            {props.text}
         </button>
     )
 }
 
-export default ToggleColorButton;
+export default Button;

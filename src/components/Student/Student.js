@@ -1,4 +1,4 @@
-import ToggleColorButton from "../ToggleColorButton/ToggleColorButton";
+import Button from "../Button/Button";
 
 const Student = (props) => {
 
@@ -16,7 +16,9 @@ const Student = (props) => {
             <h3><strong>Course:</strong> {props.course}</h3>
             <p><strong>Email:</strong> {props.email}</p>
             <p><strong>Age:</strong> {getRandomAge(18, 99)}</p>
-            <ToggleColorButton click={props.toggleColorClick} />
+            <Button 
+                click={props.toggleColorClick} 
+                text="Toggle Color"/>
         </div>
     )
 }
