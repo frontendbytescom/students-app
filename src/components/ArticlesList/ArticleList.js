@@ -1,12 +1,20 @@
 import Article from "../Article/Article";
 import React, { useState } from "react";
 import Button from "../Button/Button";
+import articlesListData from '../../data/articles-list-data';
 
 const ArticleList = () => {
     const [titleColor, setTitleColor] = useState('black');
+    const [articles, setArticles] = useState(articlesListData);
 
     const changeTitleColor = (color) => {
         setTitleColor(color);
+    }
+
+    const deleteArticleHandler = (articleIndex) => {
+        const newArticleList = [...articles];
+        newArticleList.splice(articleIndex, 1);
+        setArticles(newArticleList);
     }
 
     return (
@@ -16,33 +24,17 @@ const ArticleList = () => {
                 text="Toggle Color"
             />
 
-            <Article
-                title="Article 1"
-                color={titleColor}
-                titleClick={() => changeTitleColor('red')}
-            >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum 
-                dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </Article>
-            <Article
-                title="Article 2"
-                color={titleColor}
-                titleClick={() => changeTitleColor('green')}
-            >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum 
-                dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </Article>
-            <Article
-                title="Article 3"
-                color={titleColor}
-                titleClick={() => changeTitleColor('yellow')}
-            >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum 
-                dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </Article>
+            {articles.map((article, index) => (
+                <Article
+                    key={article.id}
+                    title={article.title}
+                    color={titleColor}
+                    titleClick={() => changeTitleColor(article.color)}
+                    deleteHandler={() => deleteArticleHandler(index)}
+                >
+                    {article.text}
+                </Article>
+            ))}
         </div>
     )
 }

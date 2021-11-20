@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Button from '../Button/Button';
 
 const Article = (props) => {
     const [title, setTitle] = useState(props.title);
@@ -16,7 +17,15 @@ const Article = (props) => {
                     You can change the article title here: 
                 </strong>
             </p>
-            <input type="text" value={title} onChange={(e) => setTitle(e.target.value)}/>
+            <input 
+                type="text" 
+                value={title} 
+                onChange={(e) => setTitle(e.target.value)}
+            />
+            <Button 
+                click={props.deleteHandler}
+                text="Delete article"
+            />
         </div>
     )
 }
